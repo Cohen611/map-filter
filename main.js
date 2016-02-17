@@ -1,4 +1,4 @@
-var sum=0;
+ var sum=0;
 var avgPrice;
 items.forEach(function(elements){
   sum +=elements.price;
@@ -7,7 +7,7 @@ items.forEach(function(elements){
 avgPrice = (sum/items.length);
 console.log(avgPrice);
 
-document.getElementById("answer1").innerHTML="Average Price $" + avgPrice;
+document.getElementById("answer1").innerHTML=avgPrice.toFixed(2);
 // Items $14-$18
 
 var priceArr = items.filter(function (element) {
@@ -59,28 +59,23 @@ document.getElementById("answer4").innerHTML = "Items with Wood"+ woodyArray;
 ////Materials/////
 
 var eightArr =items.filter(function(elements){
-  return {
-    items:elements.materials.length<8,
-  };
+  return elements.materials.length >= 8;
+
 });
 
 var eightStr="";
 eightArr.forEach(function(elements){
+
 eightStr="<h5>"+elements.title+"materials"+ elements.materials+"</h5>";
 });
 document.getElementById("answer5").innerHTML= "Eight items are" + eightStr;
 
-////Who made///
 
-var made=items.filter(function(elements){
-  return{
-    items: elements.who_made === "i_did"
-  };
-});
-var sellerMade="";
-made.forEach(function(elements){
-  sellerMade="<h5>" + elements.title+"who_made"+elements.materials+"</h5";
-
+var giantList ="";
+items.filter(function(el){
+  return el.who_made === 'i_did';
+}).forEach(function(el){
+  giantList += "<p>"+ el.title +"</p>";
 });
 
-document.getElementById("answer6").innerHTML="Made by Sellers" + sellerMade;
+document.getElementById('answer6').innerHTML = giantList;
